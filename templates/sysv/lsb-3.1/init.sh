@@ -126,6 +126,13 @@ prestart() {
 }
 {{/prestart}}
 
+{{#reload}}
+reload() {
+  {{{ reload }}}
+  return 0
+}
+{{/reload}}
+
 case "$1" in
   force-start|start|stop|force-stop|restart)
     trace "Attempting '$1' on {{{name}}}"
@@ -150,6 +157,9 @@ case "$1" in
     ;;
   stop) stop ;;
   force-stop) force_stop ;;
+  {{#reload}}
+  reload) reload ;;
+  {{/reload}}
   status) 
     status
     code=$?
@@ -167,7 +177,7 @@ case "$1" in
     stop && start 
     ;;
   *)
-    echo "Usage: $SCRIPTNAME {start|force-start|stop|force-start|force-stop|status|restart}" >&2
+    echo "Usage: $SCRIPTNAME {start|force-start|stop|force-start|force-stop|status|restart{{#reload}}|reload{{/reload}}}" >&2
     exit 3
   ;;
 esac

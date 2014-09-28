@@ -11,6 +11,9 @@ ExecStart={{{program}}} {{{shell_args}}}
 {{#prestart}}
 ExecStartPre=/lib/systemd/system/{{{name}}}-prestart.sh
 {{/prestart}}
+{{#reload}}
+ExecReload={{{reload}}}
+{{/reload}}
 Restart=always
 
 [Install]

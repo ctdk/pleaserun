@@ -133,6 +133,8 @@ class PleaseRun::Platform::Base
 
   attribute :prestart, "A command to execute before starting and restarting. A failure of this command will cause the start/restart to abort. This is useful for health checks, config tests, or similar operations."
 
+  attribute :reload, "A command or signal to reload a service's configuration. Not available for all platforms."
+
   def initialize(target_version)
     configurable_setup
     self.target_version = target_version
